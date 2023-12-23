@@ -9,7 +9,6 @@ export const fetchGreeting = () => async (dispatch) => {
   try {
     const response = await fetch('http://127.0.0.1:3000/api/v1/random_greeting');
     const data = await response.json();
-    console.log(data)
     dispatch(setGreeting(data.greeting));
   } catch (error) {
     console.error('Error fetching greeting:', error);
