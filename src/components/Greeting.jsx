@@ -5,7 +5,7 @@ import { setGreeting } from '../greetingSlice';
 
 const Greeting = ({ greeting, setGreeting }) => {
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/greetings/random')
+    fetch('http://127.0.0.1:3000/api/random_greeting')
       .then((response) => response.json())
       .then((data) => setGreeting(data.greeting))
       .catch((error) => console.error('Error fetching greeting:', error));
