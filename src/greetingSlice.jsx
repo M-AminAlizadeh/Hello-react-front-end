@@ -1,5 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const setGreeting = (greeting) => ({
+  type: 'greeting/setGreeting',
+  payload: greeting,
+});
+
+export const fetchGreeting = () => async (dispatch) => {
+  try {
+    const response = await fetch('http://127.0.0.1:3000/api/random_greeting');
+    const data = await response.json();
+    dispatch(setGreeting(data.greeting));
+  } catch (error) {
+    console.error('Error fetching greeting:', error);
+  }
+};
+
 const greetingSlice = createSlice({
   name: 'greeting',
   initialState: '',
@@ -8,5 +23,4 @@ const greetingSlice = createSlice({
   },
 });
 
-export const { setGreeting } = greetingSlice.actions;
 export default greetingSlice.reducer;

@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setGreeting } from '../greetingSlice';
+import { fetchGreeting } from '../greetingSlice';
 
-const Greeting = ({ greeting, setGreeting }) => {
+const Greeting = ({ greeting, fetchGreeting }) => {
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/api/random_greeting')
-      .then((response) => response.json())
-      .then((data) => setGreeting(data.greeting))
-      .catch((error) => console.error('Error fetching greeting:', error));
-  }, [setGreeting]);
+    fetchGreeting();
+  }, [fetchGreeting]);
 
   return (
     <div>
@@ -22,11 +19,11 @@ const Greeting = ({ greeting, setGreeting }) => {
 
 Greeting.propTypes = {
   greeting: PropTypes.string.isRequired,
-  setGreeting: PropTypes.func.isRequired,
+  fetchGreeting: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   greeting: state.greeting,
 });
 
-export default connect(mapStateToProps, { setGreeting })(Greeting);
+export default connect(mapStateToProps, { fetchGreeting })(Greeting);
