@@ -1,7 +1,9 @@
+import Greetings from './components/Greetings';
+
 function App() {
   return (
     <div>
-      hello
+      <Greetings />
     </div>
   );
 }
