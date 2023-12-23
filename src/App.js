@@ -1,11 +1,5 @@
 import Greetings from './components/Greetings';
 
-function App() {
-  return (
-    <div>
-      <Greetings />
-    </div>
-  );
-}
+const App = () => (<Greetings />);
 
 export default App;
